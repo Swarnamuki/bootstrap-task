@@ -6,7 +6,7 @@ The project contains a bootstrap.html file.
 Minimum requirements : Browser(Chrome,Firefox etc any one)
 
 Steps:
-1.Download the bootstrap.html in the /src folder.
+1.Download the bootstrap.html.
 2.Double click the file and it will open in the browser.
 (OR)
 Copy the file location and paste in the browser. Eg: D:/bootstrap.html
