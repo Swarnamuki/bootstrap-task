@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Information</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+         
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            
+        <script>
+            $(document).ready(function(){
+                $("#load-btn").click(function(){
+                    $("tbody").children().remove()
+                    $.get("https://aimtell.com/files/sites.json",function(data,status){
+                        
+                        console.log((data))
+                        var count = data.count;
+                        var values = JSON.parse(JSON.stringify(data.sites)); 
+                        var requiredValues = [];
+                        var reqVals = {};
+                        values.forEach(value =>{
+                            var fields = {};
+                            fields.id = value.id;
+                            fields.name = value.name;
+                            fields.url = value.url;
+                            requiredValues.push(fields)
+                        })
+                        requiredValues.forEach(function(dt){
+                            $("#tdata").append("<tr>"+
+                                "<td>"+dt.id+"</td>"+
+                                "<td>"+dt.name+"</td>"+
+                                "<td>"+dt.url+"</td>"
+                                +"</tr>")
+
+                        })
+                    });
+                })
+            })
+        </script>
+    </head>
+
+
+    <body>
+        <div class="container mb-5">
+            <div class = "title-table">
+                <h2 class="text-center">Sample Table</h2>
+            </div>
+        
+        
+        <button class="btn btn-info float-right mb-3" id="load-btn">Load Data</button>
+        
+        <div class="mb-5 ">
+            <table class="table table-hover table-stripped" id="user-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>url</th>
+                    </tr>
+                </thead>
+                <tbody id="tdata">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </body>
+</html>
